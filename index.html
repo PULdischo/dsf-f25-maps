@@ -30,9 +30,9 @@
 
   // Set up initial map center and zoom level
   var map = L.map('map', {
-    center: [37.974980941209004, 23.722116164209222], // EDIT latitude, longitude to re-center map
-    zoom: 16,  // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
-    scrollWheelZoom: true,
+    center: [41.57, -72.69], // EDIT latitude, longitude to re-center map
+    zoom: 9,  // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
+    scrollWheelZoom: false,
     tap: false
   });
 
@@ -49,10 +49,10 @@
   controlLayers.addBaseLayer(light, 'Carto Light basemap');
 
   /* Stamen colored terrain basemap tiles with labels */
-  var messinesi = L.tileLayer('https://mapwarper.net/maps/tile/93674/{z}/{x}/{y}.png', {
-    attribution: 'Map tiles by <a href="https://mapwarper.net">MapWarper</a>.'
+  var terrain = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
   }); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
-  controlLayers.addBaseLayer(messinesi, 'Messinesi Map');
+  controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
   // see more basemap options at https://leaflet-extras.github.io/leaflet-providers/preview/
 
@@ -69,7 +69,7 @@
 
       var marker = L.marker([row.Latitude, row.Longitude], {
         opacity: 1
-      }).bindPopup("<b>Item Number:</b>" + row.Title + "</br>" + "<b>Section:</b>" + row.Section + "</br>" + "<b>Description:</b>" + row.Description + "</br>" + "<b>Lot:</b>" + row.Lot + "</br>" + row.Photo);
+      }).bindPopup(row.Title);
       
       marker.addTo(map);
     }
